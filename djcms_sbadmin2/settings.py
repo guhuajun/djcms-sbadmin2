@@ -34,11 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 
-
-
-
 ROOT_URLCONF = 'djcms_sbadmin2.urls'
-
 
 
 WSGI_APPLICATION = 'djcms_sbadmin2.wsgi.application'
@@ -46,8 +42,6 @@ WSGI_APPLICATION = 'djcms_sbadmin2.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-
 
 
 # Internationalization
@@ -81,25 +75,25 @@ SITE_ID = 1
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'djcms_sbadmin2', 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'djcms_sbadmin2', 'templates'), ],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
-    'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.request',
-    'django.core.context_processors.media',
-    'django.core.context_processors.csrf',
-    'django.core.context_processors.tz',
-    'sekizai.context_processors.sekizai',
-    'django.core.context_processors.static',
-    'cms.context_processors.cms_settings'
+                'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.i18n',
+                'django.core.context_processors.debug',
+                'django.core.context_processors.request',
+                'django.core.context_processors.media',
+                'django.core.context_processors.csrf',
+                'django.core.context_processors.tz',
+                'sekizai.context_processors.sekizai',
+                'django.core.context_processors.static',
+                'cms.context_processors.cms_settings'
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-    'django.template.loaders.eggs.Loader'
+                'django.template.loaders.app_directories.Loader',
+                'django.template.loaders.eggs.Loader'
             ],
         },
     },
@@ -136,7 +130,6 @@ INSTALLED_APPS = (
     'sekizai',
     'treebeard',
     'djangocms_text_ckeditor',
-    'djangocms_style',
     'djangocms_column',
     'filer',
     'easy_thumbnails',
@@ -150,16 +143,18 @@ INSTALLED_APPS = (
     'djangocms_inherit',
     'djangocms_link',
     'reversion',
-    'djcms_sbadmin2'
+    'djcms_sbadmin2',
+    'aldryn_style',
+    'aldryn_bootstrap3'
 )
 
 LANGUAGES = (
-    ## Customize this
+    # Customize this
     ('en-us', gettext('en-us')),
 )
 
 CMS_LANGUAGES = {
-    ## Customize this
+    # Customize this
     'default': {
         'public': True,
         'hide_untranslated': False,
@@ -177,10 +172,9 @@ CMS_LANGUAGES = {
 }
 
 CMS_TEMPLATES = (
-    ## Customize this
-    ('fullwidth.html', 'Fullwidth'),
-    ('sidebar_left.html', 'Sidebar Left'),
-    ('sidebar_right.html', 'Sidebar Right')
+    # Customize this
+    ('blank.html', 'Blank'),
+    ('home.html', 'Home'),
 )
 
 CMS_PERMISSION = True
