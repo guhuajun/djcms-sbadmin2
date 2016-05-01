@@ -174,7 +174,7 @@ CMS_LANGUAGES = {
 CMS_TEMPLATES = (
     # Customize this
     ('blank.html', 'Blank'),
-    ('home.html', 'Home'),
+    ('page_sidebar.html', 'Page with sidebar'),
 )
 
 CMS_PERMISSION = True
