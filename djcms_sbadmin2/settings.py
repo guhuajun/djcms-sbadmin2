@@ -145,7 +145,11 @@ INSTALLED_APPS = (
     'reversion',
     'djcms_sbadmin2',
     'aldryn_style',
-    'aldryn_bootstrap3'
+    'aldryn_bootstrap3',
+
+    # plugins
+    'cmsplugins.cmsplugin_sidebar',
+
 )
 
 LANGUAGES = (

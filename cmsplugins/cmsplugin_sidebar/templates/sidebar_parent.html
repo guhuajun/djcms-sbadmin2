@@ -1,0 +1,14 @@
+{% load cms_tags %}
+
+<li>
+    {% if not instance.child_plugin_instances %}
+        <a href="{{ instance.link }}"><i class="{{ instance.icon_class }}"></i> {{ instance.name }}</a>
+    {% else %}
+        <a href="#"><i class="{{ instance.icon_class}}"></i> {{ instance.name }}<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            {% for plugin in instance.child_plugin_instances %}
+                {% render_plugin plugin %}
+            {% endfor %}
+        </ul>        
+    {% endif %}
+<li>
