@@ -8,6 +8,10 @@ body {
     background-color: #f8f8f8;
 }
 
+h1 {
+    margin-top: 0;
+}
+
 #wrapper {
     width: 100%;
 }

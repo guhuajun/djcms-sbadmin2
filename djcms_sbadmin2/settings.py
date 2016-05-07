@@ -147,8 +147,14 @@ INSTALLED_APPS = (
     'aldryn_style',
     'aldryn_bootstrap3',
 
+    # datasource
+    'rest_framework',
+    'rest_framework.authtoken',
+    'api',
+
     # plugins
     'cmsplugins.cmsplugin_sidebar',
+    'cmsplugins.cmsplugin_dbpanel',
 
 )
 
@@ -211,3 +217,13 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
 )
+
+# REST Framework, Enable Filter, Pagination
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}

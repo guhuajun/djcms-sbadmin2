@@ -1,0 +1,42 @@
+{% load staticfiles cms_tags sekizai_tags %}
+
+<div ng-app="dbpanel{{instance.pk}}" class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <i class="{{ instance.icon_class}}"></i>
+            </div>
+            {% verbatim %}
+            <div class="col-xs-9 text-right">
+                <div class="huge">26</div>
+                <div>New Comments!</div>
+            </div>
+            {% endverbatim %}
+        </div>
+    </div>
+    {% verbatim %}
+    <a href="{{ datasource.detail_link }}">
+        <div class="panel-footer">
+            <span class="pull-left">View Details</span>
+            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+        </div>
+    </a>
+    {% endverbatim %}
+</div>
+
+{% addtoblock 'js' %}<script src="{% static 'cmsplugin_dbpanel/scripts/angular.js' %}"></script>{% endaddtoblock %}
+{% addtoblock 'js' %}<script src="{% static 'cmsplugin_dbpanel/scripts/lodash.min.js' %}"></script>{% endaddtoblock %}
+{% addtoblock 'js' %}<script src="{% static 'cmsplugin_dbpanel/scripts/restangular.js' %}"></script>{% endaddtoblock %}
+{% addtoblock 'js' %}
+<script>
+    angular.module('dbpanel{{ instance.pk }}', [
+        'restangular',
+    ])
+    .controller('DashboardPanelCtrl', function ($scope, Restangular) {
+        Restangular.setRequestSuffix('.json');
+        Restangular.oneUrl('datasource', '{{ instance.data_source }}').get();
+    });
+    console.log(objects)
+</script>
+{% endaddtoblock %}

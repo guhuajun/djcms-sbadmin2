@@ -23,3 +23,8 @@ six
 # aldryn addons
 aldryn-style
 aldryn-bootstrap3
+
+# datatables view
+django-datatables-view
+
+djangorestframework
