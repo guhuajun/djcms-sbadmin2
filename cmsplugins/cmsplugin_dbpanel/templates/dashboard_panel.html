@@ -1,6 +1,6 @@
 {% load staticfiles cms_tags sekizai_tags %}
 
-<div ng-app="dbpanel{{instance.pk}}" ng-controller="dpctrl{{ instance.pk }}" class="panel panel-primary">
+<div ng-app="DashboardPanel{{instance.pk}}" ng-controller="DashboardPanelCtrl{{ instance.pk }}" class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
             <div class="col-xs-3">
@@ -25,13 +25,13 @@
     {% endverbatim %}
 </div>
 
-{% addtoblock 'js' %}<script src="{% static 'cmsplugin_dbpanel/scripts/angular.js' %}"></script>{% endaddtoblock %}
+{% addtoblock 'js' %}<script src="{% static 'cmsplugin_dbpanel/scripts/angular.min.js' %}"></script>{% endaddtoblock %}
 {% addtoblock 'js' %}<script src="{% static 'cmsplugin_dbpanel/scripts/lodash.min.js' %}"></script>{% endaddtoblock %}
-{% addtoblock 'js' %}<script src="{% static 'cmsplugin_dbpanel/scripts/restangular.js' %}"></script>{% endaddtoblock %}
+{% addtoblock 'js' %}<script src="{% static 'cmsplugin_dbpanel/scripts/restangular.min.js' %}"></script>{% endaddtoblock %}
 {% addtoblock 'js' %}
 <script>
-    angular.module('dbpanel{{ instance.pk }}', ['restangular'])
-    .controller('dpctrl{{ instance.pk }}', function ($scope, Restangular) {
+    angular.module('DashboardPanel{{ instance.pk }}', ['restangular'])
+    .controller('DashboardPanelCtrl{{ instance.pk }}', function ($scope, Restangular) {
         Restangular.setRequestSuffix('.json');
         Restangular.oneUrl('datasource', '{{ instance.data_source }}').get().then(function(datasource){
             $scope.datasource = datasource
