@@ -1,6 +1,5 @@
 {% load staticfiles cms_tags sekizai_tags %}
 
-{# http://stackoverflow.com/questions/18571301/angularjs-multiple-ng-app-within-a-page #}
 <div ng-controller="DashboardPanel{{ instance.pk }}Controller" class="panel panel-{{ instance.panel_class }}">
     <div class="panel-heading">
         <div class="row">
@@ -34,9 +33,10 @@
     application.controller('DashboardPanel{{ instance.pk }}Controller', 
         function ($scope, Restangular) {
             Restangular.setRequestSuffix('.json');
-            Restangular.oneUrl('datasource', '{{ instance.data_source }}').get().then(function(datasource){
-                $scope.datasource = datasource
-            });
+            $scope.datasource = Restangular
+                .oneUrl('datasource', '{{ instance.data_source }}')
+                .get().$object;
     });
+
 </script>
 {% endaddtoblock %}
