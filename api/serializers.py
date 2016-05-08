@@ -10,7 +10,7 @@ from rest_framework import serializers
 from api import models
 
 
-class DashboardPanelDataSourceSerializer(serializers.HyperlinkedModelSerializer):
+class DashboardPanelDataSourceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.DashboardPanelDataSource

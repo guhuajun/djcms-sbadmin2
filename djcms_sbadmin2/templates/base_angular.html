@@ -1,7 +1,7 @@
 {% load cms_tags menu_tags sekizai_tags static %}
 
 <!DOCTYPE html>
-<html lang="{{LANGUAGE_CODE}}" ng-app="sbadmin2">
+<html lang="{{LANGUAGE_CODE}}">
 
 <head>
 
@@ -45,7 +45,7 @@
 
 </head>
 
-<body>
+<body ng-app="sbAdmin2">
     {% cms_toolbar %}
     
     {% block content %}
@@ -67,7 +67,7 @@
     <script src="{% static 'djcms_sbadmin2/scripts/angular.min.js' %}"></script>
     
     <script>
-        angular.module('sbadmin2', [])
+        var application = angular.module('sbAdmin2', [])
     </script>   
     
     {% render_block 'js' %}

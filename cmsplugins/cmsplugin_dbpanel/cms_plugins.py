@@ -19,6 +19,7 @@ class DashboardPanelPlugin(CMSPluginBase):
     render_template = 'dashboard_panel.html'
     name = _('Dashboard Panel Plugin')
     model = DashboardPanelModel
+    cache = False
 
     def render(self, context, instance, placeholder):
         context = super(DashboardPanelPlugin, self).render(

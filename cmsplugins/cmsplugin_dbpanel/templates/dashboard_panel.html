@@ -1,7 +1,7 @@
 {% load staticfiles cms_tags sekizai_tags %}
 
 {# http://stackoverflow.com/questions/18571301/angularjs-multiple-ng-app-within-a-page #}
-<div id="DashboardPanel{{instance.pk}}" ng-app="DashboardPanel{{instance.pk}}" ng-controller="DashboardPanelCtrl{{instance.pk}}" class="panel panel-primary">
+<div ng-controller="DashboardPanel{{ instance.pk }}Controller" class="panel panel-{{ instance.panel_class }}">
     <div class="panel-heading">
         <div class="row">
             <div class="col-xs-3">
@@ -9,8 +9,8 @@
             </div>
             {% verbatim %}
             <div class="col-xs-9 text-right">
-                <div class="huge">{{ datasource.number }}</div>
-                <div>{{ datasource.category_name }}</div>
+                <div class="huge" ng-bind="datasource.number"></div>
+                <div ng-bind="datasource.category_name"></div>
             </div>
             {% endverbatim %}
         </div>
@@ -18,7 +18,7 @@
     {% verbatim %}
     <a href="{{ datasource.detail_link }}">
         <div class="panel-footer">
-            <span class="pull-left">详细信息</span>
+            <span class="pull-left">Details</span>
             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
             <div class="clearfix"></div>
         </div>
@@ -26,19 +26,17 @@
     {% endverbatim %}
 </div>
 
-{% addtoblock 'js' %}<script src="{% static 'cmsplugin_dbpanel/scripts/angular.min.js' %}"></script>{% endaddtoblock %}
 {% addtoblock 'js' %}<script src="{% static 'cmsplugin_dbpanel/scripts/lodash.min.js' %}"></script>{% endaddtoblock %}
 {% addtoblock 'js' %}<script src="{% static 'cmsplugin_dbpanel/scripts/restangular.min.js' %}"></script>{% endaddtoblock %}
+{% addtoblock 'js' %}<script>application = angular.module("sbAdmin2", ["restangular", ])</script>{% endaddtoblock %}
 {% addtoblock 'js' %}
 <script>
-    angular.module('DashboardPanel{{ instance.pk }}', ['restangular'])
-    .controller('DashboardPanelCtrl{{ instance.pk }}', function ($scope, Restangular) {
-        Restangular.setRequestSuffix('.json');
-        Restangular.oneUrl('datasource', '{{ instance.data_source }}').get().then(function(datasource){
-            $scope.datasource = datasource
-        });
+    application.controller('DashboardPanel{{ instance.pk }}Controller', 
+        function ($scope, Restangular) {
+            Restangular.setRequestSuffix('.json');
+            Restangular.oneUrl('datasource', '{{ instance.data_source }}').get().then(function(datasource){
+                $scope.datasource = datasource
+            });
     });
-    angular.bootstrap(document.getElementById("DashboardPanel{{ instance.pk }}"), 
-                        ['DashboardPanelCtrl{{ instance.pk }}']);
 </script>
 {% endaddtoblock %}
