@@ -31,11 +31,10 @@
 {% addtoblock 'js' %}
 <script>
     application.controller('DashboardPanel{{ instance.pk }}Controller', 
-        function ($scope, Restangular) {
+        function ($scope, $interval, Restangular) {
             Restangular.setRequestSuffix('.json');
-            $scope.datasource = Restangular
-                .oneUrl('datasource', '{{ instance.data_source }}')
-                .get().$object;
+            var dataSource = Restangular.oneUrl('datasource', '{{ instance.data_source }}')
+            $interval( function() { $scope.datasource = dataSource.get().$object; }, 5000);
     });
 
 </script>
