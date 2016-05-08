@@ -34,7 +34,11 @@
         function ($scope, $interval, Restangular) {
             Restangular.setRequestSuffix('.json');
             var dataSource = Restangular.oneUrl('datasource', '{{ instance.data_source }}')
-            $interval( function() { $scope.datasource = dataSource.get().$object; }, 5000);
+            $scope.datasource = dataSource.get().$object;
+            $interval(
+                function() {
+                    $scope.datasource = dataSource.get().$object;
+                }, 5000);
     });
 
 </script>
