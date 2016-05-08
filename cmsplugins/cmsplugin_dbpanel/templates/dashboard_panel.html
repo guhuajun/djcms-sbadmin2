@@ -1,6 +1,7 @@
 {% load staticfiles cms_tags sekizai_tags %}
 
-<div ng-app="DashboardPanel{{instance.pk}}" ng-controller="DashboardPanelCtrl{{ instance.pk }}" class="panel panel-primary">
+{# http://stackoverflow.com/questions/18571301/angularjs-multiple-ng-app-within-a-page #}
+<div id="DashboardPanel{{instance.pk}}" ng-app="DashboardPanel{{instance.pk}}" ng-controller="DashboardPanelCtrl{{instance.pk}}" class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
             <div class="col-xs-3">
@@ -37,5 +38,7 @@
             $scope.datasource = datasource
         });
     });
+    angular.bootstrap(document.getElementById("DashboardPanel{{ instance.pk }}"), 
+                        ['DashboardPanelCtrl{{ instance.pk }}']);
 </script>
 {% endaddtoblock %}

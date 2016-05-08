@@ -185,6 +185,8 @@ CMS_TEMPLATES = (
     # Customize this
     ('blank.html', 'Blank'),
     ('page_sidebar.html', 'Page with sidebar'),
+    ('blank_angular.html', 'Blank (Angular)'),
+    ('page_sidebar_angular.html', 'Page with sidebar (Angular)'),
 )
 
 CMS_PERMISSION = True
