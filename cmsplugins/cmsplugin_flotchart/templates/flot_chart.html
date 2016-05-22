@@ -8,24 +8,26 @@
 </div>
 
 {% addtoblock 'js' %}<script src="{% static 'cmsplugin_flotchart/scripts/jquery.flot.js' %}"></script>{% endaddtoblock %}
-{% addtoblock 'js' %}<script src="{% static 'cmsplugin_flotchart/scripts/jquery.flot.categories.js' %}"></script>{% endaddtoblock %}
 {% addtoblock 'js' %}
 <script>
+$(document).ready(function(){ 
+	
 	var options = {
-		lines: {
-			show: true
+		series: {
+			lines: {
+				show: true
+			},
+			points: {
+				show: true
+			}
 		},
-		points: {
-			show: true
-		},
-		xaxis: {
-			tickDecimals: 0,
-			tickSize: 1
+		yaxis: {
+			max: 1
 		}
-	};
-
+	};	
+	
 	function onDataReceived(data) {
-		$.plot($("#flotchart_{{ instance.id}}"), data, options);
+		$.plot($("#flotchart_{{ instance.id}}"), [data.data], options);
 	}
 	
 	$.ajax({
@@ -33,7 +35,9 @@
 		type: "GET",
 		datatype: "json",
 		success: onDataReceived
-	});
-
+	});	
+	
+    
+});
 </script>
 {% endaddtoblock %}

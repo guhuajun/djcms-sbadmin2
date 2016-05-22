@@ -22,6 +22,6 @@ class FlotChart1(APIView):
 
     def get(self, request, format=None):
         response_data = {
-            "data": [(x*0.1, float(math.sin(x*0.1))) for x in xrange(-10, 11)]
+            "data": [(x*0.1, float(math.sin(x*0.1))) for x in xrange(-30, 31)]
         }
         return Response(response_data)
