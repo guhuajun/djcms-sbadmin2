@@ -3,8 +3,15 @@
 {% addtoblock 'css' %}<link href="{% static 'cmsplugin_flotchart/css/cmsplugin_flotchart.css' %}" rel="stylesheet" />{% endaddtoblock %}
 
 {# Requires CSS to set width and height #}
-<div class="flot-chart">
-	<div id="flotchart_{{ instance.id }}" class="flot-chart-content"></div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Flot Chart {{ instance.pk }}
+	</div>
+	<div class="panel-body">
+		<div class="flot-chart">
+			<div id="flotchart_{{ instance.id }}" class="flot-chart-content"></div>
+		</div>		
+	</div>
 </div>
 
 {% addtoblock 'js' %}<script src="{% static 'cmsplugin_flotchart/scripts/jquery.flot.js' %}"></script>{% endaddtoblock %}
@@ -22,12 +29,16 @@ $(document).ready(function(){
 			}
 		},
 		yaxis: {
-			max: 1
-		}
+			min: -1.2,
+			max: 1.2
+		},
 	};	
 	
 	function onDataReceived(data) {
-		$.plot($("#flotchart_{{ instance.id}}"), [data.data], options);
+		$.plot($("#flotchart_{{ instance.id}}"), [{
+			data: data.data,
+			label: data.label
+		}], options);
 	}
 	
 	$.ajax({
