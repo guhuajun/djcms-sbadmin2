@@ -1,0 +1,39 @@
+{% load staticfiles cms_tags sekizai_tags %}
+
+{% addtoblock 'css' %}<link href="{% static 'cmsplugin_flotchart/css/cmsplugin_flotchart.css' %}" rel="stylesheet" />{% endaddtoblock %}
+
+{# Requires CSS to set width and height #}
+<div class="flot-chart">
+	<div id="flotchart_{{ instance.id }}" class="flot-chart-content"></div>
+</div>
+
+{% addtoblock 'js' %}<script src="{% static 'cmsplugin_flotchart/scripts/jquery.flot.js' %}"></script>{% endaddtoblock %}
+{% addtoblock 'js' %}<script src="{% static 'cmsplugin_flotchart/scripts/jquery.flot.categories.js' %}"></script>{% endaddtoblock %}
+{% addtoblock 'js' %}
+<script>
+	var options = {
+		lines: {
+			show: true
+		},
+		points: {
+			show: true
+		},
+		xaxis: {
+			tickDecimals: 0,
+			tickSize: 1
+		}
+	};
+
+	function onDataReceived(data) {
+		$.plot($("#flotchart_{{ instance.id}}"), data, options);
+	}
+	
+	$.ajax({
+		url: "{{ instance.data_source }}",
+		type: "GET",
+		datatype: "json",
+		success: onDataReceived
+	});
+
+</script>
+{% endaddtoblock %}

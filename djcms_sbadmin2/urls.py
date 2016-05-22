@@ -3,6 +3,7 @@
 
 from __future__ import absolute_import, print_function, unicode_literals
 
+import debug_toolbar
 from cms.sitemaps import CMSSitemap
 from django.conf import settings
 from django.conf.urls import *
@@ -39,3 +40,7 @@ if settings.DEBUG:
                            url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
                                {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
                           ) + staticfiles_urlpatterns() + urlpatterns
+
+    urlpatterns += patterns('',
+                            url(r'^__debug__/', include(debug_toolbar.urls)),
+                           )

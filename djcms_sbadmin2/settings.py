@@ -107,6 +107,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
@@ -123,6 +124,10 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'django.contrib.messages',
+    'django_extensions',
+    # 'debug_toolbar',
+
+    # cms
     'cms',
     'menus',
     'sekizai',
@@ -153,6 +158,7 @@ INSTALLED_APPS = (
     # plugins
     'cmsplugins.cmsplugin_sidebar',
     'cmsplugins.cmsplugin_dbpanel',
+    'cmsplugins.cmsplugin_flotchart',
 
 )
 
@@ -226,4 +232,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
+}
+
+DEBUG_TOOLBAR_CONFIG = {
+    "JQUERY_URL": os.path.join(STATIC_URL, 'bower_components/jquery/jquery.min.js')
 }

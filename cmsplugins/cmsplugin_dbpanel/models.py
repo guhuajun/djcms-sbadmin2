@@ -32,6 +32,8 @@ class DashboardPanelModel(CMSPlugin):
     icon_class = models.CharField(
         max_length=40, default="fa fa-bar-chart-o fa-fw", verbose_name=_("icon class"))
     data_source = models.URLField(verbose_name=_("data source"))
+    refresh_interval = models.PositiveSmallIntegerField(
+        default=5000, verbose_name=_("refresh interval"))
 
     def __unicode__(self):
         return u"{0}".format(self.description)

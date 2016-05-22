@@ -38,7 +38,7 @@
             $interval(
                 function() {
                     $scope.datasource = dataSource.get().$object;
-                }, 5000);
+                }, {{ instance.refresh_interval }});
     });
 
 </script>

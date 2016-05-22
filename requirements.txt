@@ -24,7 +24,10 @@ six
 aldryn-style
 aldryn-bootstrap3
 
-# datatables view
+# views for js plugins
 django-datatables-view
+python-flot-utils
 
 djangorestframework
+django-debug-toolbar
+django-extensions
