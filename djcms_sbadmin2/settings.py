@@ -124,7 +124,10 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'django.contrib.messages',
+
+    # 3rd party extensions
     'django_extensions',
+    'django_cas_ng',
     # 'debug_toolbar',
 
     # cms
@@ -237,3 +240,11 @@ REST_FRAMEWORK = {
 DEBUG_TOOLBAR_CONFIG = {
     "JQUERY_URL": os.path.join(STATIC_URL, 'bower_components/jquery/jquery.min.js')
 }
+
+# Authentication
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'django_cas_ng.backends.CASBackend',
+)
+
+CAS_SERVER_URL = 'sso.corp.contoso.com'

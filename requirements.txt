@@ -1,4 +1,4 @@
-django-cms<3.3
+django-cms<3.4
 django-treebeard>=2.0
 
 https://github.com/divio/djangocms-column/archive/master.zip?1462094212.11
@@ -31,3 +31,4 @@ python-flot-utils
 djangorestframework
 django-debug-toolbar
 django-extensions
+django-cas-ng

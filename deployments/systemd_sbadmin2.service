@@ -1,0 +1,12 @@
+[Unit]
+Description=sbadmin2 daemon
+After=network.target
+
+[Service]
+User=nginx
+Group=nginx
+WorkingDirectory=/opt/apps/sbadmin2
+ExecStart=/opt/apps/sbadmin2/env/bin/gunicorn --workers 2 --bind 0.0.0.0:8600 djcms_sbadmin2.wsgi:application --env DJANGO_SETTINGS_MODULE=djcms_sbadmin2.settings_dev --reload
+
+[Install]
+WantedBy=multi-user.target
