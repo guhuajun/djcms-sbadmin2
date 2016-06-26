@@ -11,10 +11,13 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from rest_framework.authtoken import views
+from django_cas_ng import views as cas_veiws
 
 admin.autodiscover()
 
 urlpatterns = i18n_patterns('',
+                            # url(r'^admin/login', cas_veiws.login),
+                            # url(r'^admin/logout', cas_veiws.logout),
                             url(r'^admin/', include(admin.site.urls)),
                             url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
                                 {'sitemaps': {'cmspages': CMSSitemap}}),

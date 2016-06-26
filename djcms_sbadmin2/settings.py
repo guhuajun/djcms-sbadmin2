@@ -128,7 +128,7 @@ INSTALLED_APPS = (
     # 3rd party extensions
     'django_extensions',
     'django_cas_ng',
-    # 'debug_toolbar',
+    'debug_toolbar',
 
     # cms
     'cms',
